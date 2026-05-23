@@ -23,3 +23,4 @@
 
 5. Development Infrastructure (Docker & MCP)
 * GitHub/MCP Connectivity: If the GitHub MCP server reports a "Cannot connect to Docker daemon" error, first confirm that the Docker Desktop application is fully launched and running on the host machine before attempting to rotate tokens or debug configuration files.
+* Strict Project Isolation: NEVER store MCP API tokens (like SUPABASE_ACCESS_TOKEN or GITHUB_PERSONAL_ACCESS_TOKEN) in global macOS environments (e.g. ~/.zshrc or launchctl) to prevent cross-contamination between projects. Always store them in a hidden `.env` file at the root of the specific project workspace. This ensures the AI coding assistant seamlessly switches context when jumping between conversations.
