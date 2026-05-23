@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { createClient } from '@/utils/supabase/server'
 
-export default function Header() {
+export default async function Header() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <header className="header glass-panel">
       <div className="container header-content">
@@ -16,7 +20,11 @@ export default function Header() {
           <Link href="/about">About</Link>
         </nav>
         <div className="header-actions">
-          <Link href="/cart" className="cart-link">Cart (0)</Link>
+          {user ? (
+            <Link href="/account" className="cart-link">Account</Link>
+          ) : (
+            <Link href="/login" className="cart-link">Sign In</Link>
+          )}
         </div>
       </div>
     </header>
