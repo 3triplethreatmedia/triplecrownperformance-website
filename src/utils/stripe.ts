@@ -1,0 +1,13 @@
+import Stripe from 'stripe'
+
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('STRIPE_SECRET_KEY is not set in the environment variables.')
+}
+
+export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2023-10-16', // Use the latest API version or your preferred one
+  appInfo: {
+    name: 'Triple Crown Performance',
+    version: '0.1.0',
+  },
+})

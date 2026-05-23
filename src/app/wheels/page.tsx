@@ -1,4 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
+import CheckoutButton from '@/components/CheckoutButton'
 
 export default async function WheelsPage() {
   const supabase = await createClient()
@@ -26,7 +27,6 @@ export default async function WheelsPage() {
           {products.map((product) => (
             <div key={product.id} className="product-card glass-panel">
               <div className="product-image-wrapper">
-                {/* We use a standard img tag for now since the images are coming from an external URL that might not be configured in Next.js domains */}
                 <img 
                   src={product.image_url} 
                   alt={product.name} 
@@ -39,7 +39,12 @@ export default async function WheelsPage() {
                   <p className="product-price">${Number(product.base_price).toLocaleString('en-US', {minimumFractionDigits: 2})}</p>
                 </div>
                 <p className="product-description">{product.description}</p>
-                <button className="btn-secondary add-to-cart-btn">View Details</button>
+                <CheckoutButton 
+                  productId={product.id} 
+                  price={product.base_price} 
+                  name={product.name} 
+                  image={product.image_url} 
+                />
               </div>
             </div>
           ))}
