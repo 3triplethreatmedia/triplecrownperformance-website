@@ -5,7 +5,7 @@ if (!process.env.STRIPE_SECRET_KEY) {
 }
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2023-10-16', // Use the latest API version or your preferred one
+  apiVersion: '2026-04-22.dahlia', // Updated to match the latest 2026 SDK types
   appInfo: {
     name: 'Triple Crown Performance',
     version: '0.1.0',
